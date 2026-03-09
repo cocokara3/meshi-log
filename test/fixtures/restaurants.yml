@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  name: MyString
+  genre: MyString
+  rating: 1
+  comment: MyText
+  visited_at: 2026-03-10
+
+two:
+  user: two
+  name: MyString
+  genre: MyString
+  rating: 1
+  comment: MyText
+  visited_at: 2026-03-10
