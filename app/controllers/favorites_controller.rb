@@ -1,5 +1,6 @@
 class FavoritesController < ApplicationController
   before_action :authenticate_user!
+  before_action :require_non_guest
 
   def create
     @restaurant = Restaurant.find(params[:restaurant_id])

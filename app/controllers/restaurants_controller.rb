@@ -1,6 +1,7 @@
 class RestaurantsController < ApplicationController
   before_action :set_restaurant, only: %i[ show edit update destroy ]
   before_action :authenticate_user!
+  before_action :require_non_guest, only: %i[ new create edit update destroy ]
   # GET /restaurants or /restaurants.json
   def index
    @q = current_user.restaurants.ransack(params[:q])
