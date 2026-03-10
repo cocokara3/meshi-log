@@ -1,0 +1,18 @@
+ja:
+  activerecord:
+    models:
+      restaurant: お店
+    attributes:
+      restaurant:
+        name: お店の名前
+        genre: ジャンル
+        rating: 評価
+        comment: コメント
+        visited_at: 訪問日
+        image: 画像
+  views:
+    pagination:
+      first: 最初
+      last: 最後
+      previous: 前
+      next: 次
