@@ -18,6 +18,22 @@
   </head>
 
   <body>
+    <nav>
+      <% if user_signed_in? %>
+        <%= link_to 'お店一覧', restaurants_path %>
+        <%= link_to '新規投稿', new_restaurant_path %>
+        <%= button_to 'ログアウト', destroy_user_session_path, method: :delete %>
+      <% else %>
+        <%= link_to 'ログイン', new_user_session_path %>
+        <%= link_to '新規登録', new_user_registration_path %>
+      <% end %>
+    </nav>
+    <% if notice %>
+      <p style="color: green"><%= notice %></p>
+    <% end %>
+    <% if alert %>
+      <p style="color: red"><%= alert %></p>
+    <% end %>
     <%= yield %>
   </body>
 </html>
