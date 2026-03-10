@@ -22,4 +22,13 @@
   <% if restaurant.image.attached? %>
     <%= image_tag restaurant.image, style: "width: 300px;" %>
   <% end %>
+
+  <%# お気に入りボタン %>
+  <% if user_signed_in? %>
+    <% if current_user.favorites.exists?(restaurant: restaurant) %>
+      <%= button_to '❤️ お気に入り解除', restaurant_favorite_path(restaurant), method: :delete %>
+    <% else %>
+      <%= button_to '🤍 お気に入り追加', restaurant_favorite_path(restaurant), method: :post %>
+    <% end %>
+  <% end %>
 </div>
