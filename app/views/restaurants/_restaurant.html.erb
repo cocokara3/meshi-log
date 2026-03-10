@@ -1,28 +1,27 @@
 <div id="<%= dom_id restaurant %>">
   <p>
-    <strong>Name:</strong>
+    <strong>お店の名前:</strong>
     <%= restaurant.name %>
   </p>
   <p>
-    <strong>Genre:</strong>
+    <strong>ジャンル:</strong>
     <%= restaurant.genre %>
   </p>
   <p>
-    <strong>Rating:</strong>
+    <strong>評価:</strong>
     <%= restaurant.rating %>
   </p>
   <p>
-    <strong>Comment:</strong>
+    <strong>コメント:</strong>
     <%= restaurant.comment %>
   </p>
   <p>
-    <strong>Visited at:</strong>
+    <strong>訪問日:</strong>
     <%= restaurant.visited_at %>
   </p>
   <% if restaurant.image.attached? %>
     <%= image_tag restaurant.image, style: "width: 300px;" %>
   <% end %>
-
   <%# お気に入りボタン %>
   <% if user_signed_in? %>
     <% if current_user.favorites.exists?(restaurant: restaurant) %>

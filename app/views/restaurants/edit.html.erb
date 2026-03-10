@@ -1,12 +1,8 @@
-<% content_for :title, "Editing restaurant" %>
-
-<h1>Editing restaurant</h1>
-
+<% content_for :title, "お店を編集" %>
+<h1>お店を編集</h1>
 <%= render "form", restaurant: @restaurant %>
-
 <br>
-
 <div>
-  <%= link_to "Show this restaurant", @restaurant %> |
-  <%= link_to "Back to restaurants", restaurants_path %>
+  <%= link_to '詳細', @restaurant %> |
+  <%= link_to '一覧に戻る', restaurants_path %>
 </div>

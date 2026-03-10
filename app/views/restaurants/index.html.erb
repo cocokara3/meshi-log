@@ -1,4 +1,4 @@
-<h1>Restaurants</h1>
+<h1>お店一覧</h1>
 
 <%# 検索フォーム %>
 <%= search_form_for @q, url: restaurants_path do |f| %>
@@ -17,9 +17,11 @@
   <% @restaurants.each do |restaurant| %>
     <%= render restaurant %>
     <p>
-      <%= link_to "Show this restaurant", restaurant %>
+      <%= link_to '詳細', restaurant %>
     </p>
   <% end %>
 </div>
 
-<%= link_to "New restaurant", new_restaurant_path %>
+<%= paginate @restaurants %>
+
+<%= link_to '新規投稿', new_restaurant_path %>

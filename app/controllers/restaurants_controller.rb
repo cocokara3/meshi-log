@@ -5,7 +5,7 @@ class RestaurantsController < ApplicationController
   # GET /restaurants or /restaurants.json
   def index
    @q = current_user.restaurants.ransack(params[:q])
-   @restaurants = @q.result(distinct: true)
+   @restaurants = @q.result(distinct: true).page(params[:page]).per(10)
   end
 
   # GET /restaurants/1 or /restaurants/1.json
