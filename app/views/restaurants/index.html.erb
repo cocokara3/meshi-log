@@ -1,5 +1,12 @@
 <h1>お店一覧</h1>
 
+<%# 並び替え %>
+<div>
+  <%= link_to '新着順', restaurants_path(order: 'created_at_desc') %>
+  <%= link_to '評価が高い順', restaurants_path(order: 'rating_desc') %>
+  <%= link_to '評価が低い順', restaurants_path(order: 'rating_asc') %>
+</div>
+
 <%# 検索フォーム %>
 <%= search_form_for @q, url: restaurants_path do |f| %>
   <div>

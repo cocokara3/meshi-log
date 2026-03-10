@@ -3,9 +3,11 @@ class RestaurantsController < ApplicationController
   before_action :authenticate_user!
   before_action :require_non_guest, only: %i[ new create edit update destroy ]
   # GET /restaurants or /restaurants.json
-  def index
+ def index
    @q = current_user.restaurants.ransack(params[:q])
-   @restaurants = @q.result(distinct: true).page(params[:page]).per(10)
+   @restaurants = @q.result(distinct: true)
+                                   .order(order_params)
+                                   .page(params[:page]).per(10)
   end
 
   # GET /restaurants/1 or /restaurants/1.json
@@ -70,4 +72,11 @@ class RestaurantsController < ApplicationController
     def restaurant_params
       params.require(:restaurant).permit(:name, :genre, :rating, :comment, :visited_at, :image)
     end
+    def order_params
+     case params[:order]
+     when 'rating_desc' then { rating: :desc }
+     when 'rating_asc' then { rating: :asc }
+     else { created_at: :desc }
+   end
+ end
 end
