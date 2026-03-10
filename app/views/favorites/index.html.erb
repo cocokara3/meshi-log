@@ -1,0 +1,14 @@
+<h1>お気に入り一覧</h1>
+
+<% if @favorites.empty? %>
+  <p>お気に入りはまだありません</p>
+<% else %>
+  <div id="favorites">
+    <% @favorites.each do |restaurant| %>
+      <%= render restaurant %>
+      <p>
+        <%= link_to '詳細を見る', restaurant %>
+      </p>
+    <% end %>
+  </div>
+<% end %>
