@@ -2,7 +2,8 @@
 set -o errexit
 
 gem install bundler
-bundle update net-pop
+bundle config set --local without 'development test'
+bundle update net-pop --bundler
 bundle install
 bundle exec rails assets:precompile
 bundle exec rails assets:clean
