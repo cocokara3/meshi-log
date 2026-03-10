@@ -20,8 +20,10 @@
     <%= restaurant.visited_at %>
   </p>
   <% if restaurant.image.attached? %>
-    <%= image_tag restaurant.image, style: "width: 300px;" %>
-  <% end %>
+   <%= image_tag restaurant.image, style: "width: 300px;" %>
+  <% else %>
+   <%= image_tag 'salad.png', style: "width: 300px;" %>
+ <% end %>
   <%# お気に入りボタン %>
   <% if user_signed_in? %>
     <% if current_user.favorites.exists?(restaurant: restaurant) %>
