@@ -56,5 +56,6 @@ group :test do
   gem "selenium-webdriver"
 end
 
-gem 'devise'
-gem 'rails-i18n'
+gem 'devise' # ユーザー認証のためのgem
+gem 'rails-i18n' # 日本語化のためのgem
+gem 'ransack' # 検索機能のためのgem

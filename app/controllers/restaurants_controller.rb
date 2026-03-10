@@ -3,7 +3,8 @@ class RestaurantsController < ApplicationController
   before_action :authenticate_user!
   # GET /restaurants or /restaurants.json
   def index
-    @restaurants = Restaurant.all
+   @q = current_user.restaurants.ransack(params[:q])
+   @restaurants = @q.result(distinct: true)
   end
 
   # GET /restaurants/1 or /restaurants/1.json
