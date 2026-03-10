@@ -59,3 +59,6 @@ end
 gem 'devise' # ユーザー認証のためのgem
 gem 'rails-i18n' # 日本語化のためのgem
 gem 'ransack' # 検索機能のためのgem
+gem 'net-imap', require: false
+gem 'net-pop', require: false  
+gem 'net-smtp', require: false
