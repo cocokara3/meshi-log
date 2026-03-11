@@ -22,8 +22,12 @@ class Restaurant < ApplicationRecord
   end
 
   def self.ransackable_attributes(auth_object = nil)
-    %w[name genre rating comment visited_at]
-  end
+   %w[name genre rating comment visited_at]
+ end
+
+ def self.ransackable_associations(auth_object = nil)
+   %w[tags]
+ end
 
   private
 

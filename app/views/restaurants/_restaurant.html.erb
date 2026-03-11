@@ -9,7 +9,7 @@
   </p>
   <p>
     <strong>評価:</strong>
-    <%= restaurant.rating %>
+    <%= '★' * restaurant.rating + '☆' * (5 - restaurant.rating) %>
   </p>
   <p>
     <strong>コメント:</strong>
@@ -35,7 +35,7 @@
   <p>
    <strong>タグ:</strong>
    <% restaurant.tags.each do |tag| %>
-     <span><%= tag.name %></span>
+     <%= link_to tag.name, restaurants_path(q: { tags_name_eq: tag.name }) %>
    <% end %>
  </p>
 
