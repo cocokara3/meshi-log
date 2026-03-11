@@ -171,6 +171,12 @@
   margin-bottom: 1.5rem;
 }
 
+.show-actions-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
 .show-actions-left {
   display: flex;
   gap: 0.75rem;

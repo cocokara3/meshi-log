@@ -1,14 +1,16 @@
-<h1>お気に入り一覧</h1>
+<div class="page-header">
+  <h1 class="page-title">❤️ お気に入り一覧</h1>
+</div>
 
 <% if @favorites.empty? %>
-  <p>お気に入りはまだありません</p>
+  <div style="text-align: center; padding: 4rem; color: #64748b;">
+    <p style="font-size: 1.2rem;">まだお気に入りがありません</p>
+    <%= link_to 'お店を探す', restaurants_path, class: "btn-primary" %>
+  </div>
 <% else %>
-  <div id="favorites">
+  <div class="cards-grid">
     <% @favorites.each do |restaurant| %>
       <%= render restaurant %>
-      <p>
-        <%= link_to '詳細を見る', restaurant %>
-      </p>
     <% end %>
   </div>
 <% end %>

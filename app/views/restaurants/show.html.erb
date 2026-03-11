@@ -16,12 +16,22 @@
 
   <div class="show-content">
     <div class="show-rating-row">
-      <span class="show-rating"><%= '★' * @restaurant.rating + '☆' * (5 - @restaurant.rating) %></span>
-      <div class="show-actions-left">
-        <%= link_to '✏️ 編集', edit_restaurant_path(@restaurant), class: "btn-edit" %>
-        <%= button_to '🗑️ 削除', @restaurant, method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn-delete" %>
-      </div>
-    </div>
+     <span class="show-rating"><%= '★' * @restaurant.rating + '☆' * (5 - @restaurant.rating) %></span>
+     <div class="show-actions-right">
+       <% if user_signed_in? %>
+         <% if current_user.favorites.exists?(restaurant: @restaurant) %>
+           <%= button_to '❤️ お気に入り解除', restaurant_favorite_path(@restaurant),  method: :delete, class: "btn-favorite" %>
+         <% else %>
+           <%= button_to '🤍 お気に入り追加', restaurant_favorite_path(@restaurant), method: :post, class: "btn-favorite" %>
+         <% end %>
+       <% end %>
+     </div>
+     <div class="show-actions-left">
+      <%= link_to '✏️ 編集', edit_restaurant_path(@restaurant), class: "btn-edit" %>
+      <%= button_to '🗑️ 削除', @restaurant, method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn-delete" %>
+     </div>
+   </div>
+ </div>
 
     <% if @restaurant.comment.present? %>
       <div class="show-review">

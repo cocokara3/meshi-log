@@ -7,15 +7,15 @@ class FavoritesController < ApplicationController
   end
 
   def create
-    @restaurant = Restaurant.find(params[:restaurant_id])
-    @restaurant.favorites.create(user: current_user)
-    redirect_to @restaurant, notice: 'お気に入りに追加しました'
-  end
+   @restaurant = Restaurant.find(params[:restaurant_id])
+   @restaurant.favorites.create(user: current_user)
+   redirect_to request.referer || restaurants_path, notice: 'お気に入りに追加しました'
+ end
 
-  def destroy
-    @restaurant = Restaurant.find(params[:restaurant_id])
-    favorite = @restaurant.favorites.find_by(user: current_user)
-    favorite.destroy
-    redirect_to @restaurant, notice: 'お気に入りを解除しました'
-  end
+ def destroy
+   @restaurant = Restaurant.find(params[:restaurant_id])
+   favorite = @restaurant.favorites.find_by(user: current_user)
+   favorite.destroy
+   redirect_to request.referer || restaurants_path, notice: 'お気に入りを解除しました'
+ end
 end
