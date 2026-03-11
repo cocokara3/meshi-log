@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "users/show"
   devise_for :users, controllers: {
     sessions: 'users/sessions',
     registrations: 'users/registrations'
@@ -13,5 +14,6 @@ Rails.application.routes.draw do
   get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
   get 'favorites', to: 'favorites#index', as: 'favorite_list'
+  get 'account', to: 'users#show', as: 'user_profile'
   root "restaurants#index"
 end

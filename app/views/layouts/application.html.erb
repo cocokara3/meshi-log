@@ -22,7 +22,7 @@
           <%= link_to 'お店一覧', restaurants_path %>
           <%= link_to '新規投稿', new_restaurant_path, class: "btn-primary" %>
           <%= link_to 'お気に入り', favorite_list_path %>
-          <%= link_to 'アカウント設定', edit_user_registration_path %>
+          <%= link_to 'アカウント', user_profile_path %>
           <%= button_to 'ログアウト', destroy_user_session_path, method: :delete %>
         <% else %>
           <%= link_to 'ログイン', new_user_session_path %>
