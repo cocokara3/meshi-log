@@ -1,29 +1,25 @@
-<h1>お店一覧</h1>
-
-<%# 並び替え %>
-<div>
-  <%= link_to '新着順', restaurants_path(order: 'created_at_desc') %>
-  <%= link_to '評価が高い順', restaurants_path(order: 'rating_desc') %>
-  <%= link_to '評価が低い順', restaurants_path(order: 'rating_asc') %>
+<div class="flex justify-between items-center mb-6">
+  <h1 style="font-size: 2rem; font-weight: 700;">お店一覧</h1>
+  <div style="display: flex; gap: 0.5rem;">
+    <%= link_to '新着順', restaurants_path(order: 'created_at_desc'), style: "font-size: 0.875rem; color: #475569; text-decoration: none; padding: 0.4rem 0.75rem; border: 1px solid #e2e8f0; border-radius: 6px;" %>
+    <%= link_to '評価が高い順', restaurants_path(order: 'rating_desc'), style: "font-size: 0.875rem; color: #475569; text-decoration: none; padding: 0.4rem 0.75rem; border: 1px solid #e2e8f0; border-radius: 6px;" %>
+    <%= link_to '評価が低い順', restaurants_path(order: 'rating_asc'), style: "font-size: 0.875rem; color: #475569; text-decoration: none; padding: 0.4rem 0.75rem; border: 1px solid #e2e8f0; border-radius: 6px;" %>
+  </div>
 </div>
 
-<%# 検索フォーム %>
 <%= search_form_for @q, url: restaurants_path do |f| %>
-  <div>
-    <%= f.search_field :name_or_genre_cont, placeholder: 'お店・ジャンルで検索' %>
+  <div style="display: flex; gap: 0.5rem; margin-bottom: 2rem;">
+    <%= f.search_field :name_or_genre_cont, placeholder: 'お店の名前・ジャンルで検索', style: "padding: 0.5rem 1rem; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 0.875rem; width: 300px;" %>
+    <%= f.submit '検索', style: "padding: 0.5rem 1rem; background-color: #f2930d; color: white; border: none; border-radius: 8px; font-size: 0.875rem; font-weight: 600; cursor: pointer;" %>
   </div>
-  <%= f.submit '検索' %>
 <% end %>
 
-<div id="restaurants">
+<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem;align-items: start;">
   <% @restaurants.each do |restaurant| %>
     <%= render restaurant %>
-    <p>
-      <%= link_to '詳細', restaurant %>
-    </p>
   <% end %>
 </div>
 
-<%= paginate @restaurants %>
-
-<%= link_to '新規投稿', new_restaurant_path %>
+<div style="margin-top: 2rem; text-align: center;">
+  <%= paginate @restaurants %>
+</div>
