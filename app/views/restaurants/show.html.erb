@@ -25,13 +25,13 @@
            <%= button_to '🤍 お気に入り追加', restaurant_favorite_path(@restaurant), method: :post, class: "btn-favorite" %>
          <% end %>
        <% end %>
-     </div>
-     <div class="show-actions-left">
-      <%= link_to '✏️ 編集', edit_restaurant_path(@restaurant), class: "btn-edit" %>
-      <%= button_to '🗑️ 削除', @restaurant, method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn-delete" %>
+      
+       <div class="show-actions-left">
+         <%= link_to '✏️ 編集', edit_restaurant_path(@restaurant), class: "btn-edit" %>
+         <%= button_to '🗑️ 削除', @restaurant, method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn-delete" %>
+       </div>
      </div>
    </div>
- </div>
 
     <% if @restaurant.comment.present? %>
       <div class="show-review">

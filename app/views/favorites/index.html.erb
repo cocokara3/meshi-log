@@ -3,8 +3,8 @@
 </div>
 
 <% if @favorites.empty? %>
-  <div style="text-align: center; padding: 4rem; color: #64748b;">
-    <p style="font-size: 1.2rem;">まだお気に入りがありません</p>
+  <div class="empty-state">
+    <p>まだお気に入りがありません</p>
     <%= link_to 'お店を探す', restaurants_path, class: "btn-primary" %>
   </div>
 <% else %>

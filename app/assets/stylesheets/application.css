@@ -106,3 +106,13 @@ main {
   border-radius: 8px;
   margin-bottom: 1rem;
 }
+.empty-state {
+  text-align: center;
+  padding: 4rem;
+  color: #64748b;
+}
+
+.empty-state p {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
