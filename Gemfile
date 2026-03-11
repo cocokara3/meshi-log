@@ -63,4 +63,3 @@ gem 'kaminari' # ページネーションのためのgem
 gem 'net-imap', require: false
 gem 'net-pop', require: false  
 gem 'net-smtp', require: false
-gem "tailwindcss-rails" # Tailwind CSSをRailsプロジェクトに統合するためのgem
