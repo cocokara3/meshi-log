@@ -1,24 +1,51 @@
-# README
+# めしログ
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+食べたお店を記録する、自分だけのグルメ日記アプリです。
 
-Things you may want to cover:
+## URL
 
-* Ruby version
+https://meshi-log-z3o6.onrender.com
 
-* System dependencies
+ゲストログインボタンからすぐに機能を体験できます。
 
-* Configuration
+## スクリーンショット
 
-* Database creation
+<!-- スクショを後で追加 -->
 
-* Database initialization
+## 機能一覧
 
-* How to run the test suite
+- ユーザー登録・ログイン・ログアウト（Devise）
+- ゲストログイン
+- お店の投稿・編集・削除
+- 画像アップロード（ActiveStorage）
+- お気に入り追加・解除・一覧表示
+- タグ機能（スペース区切りで複数登録・クリックで絞り込み）
+- 検索機能（お店名・ジャンルで検索）
+- 並び替え（新着順・評価順）
+- ページネーション（kaminari）
+- ゲストユーザーへの操作制限
+- 他ユーザーの投稿へのアクセス制限
 
-* Services (job queues, cache servers, search engines, etc.)
+## 使用技術
 
-* Deployment instructions
+| 技術 | バージョン |
+|------|-----------|
+| Ruby | 3.3.3 |
+| Rails | 7.2.3 |
+| PostgreSQL | - |
 
-* ...
+## インフラ
+
+- Render（Webサーバー・データベース）
+
+## ER図
+
+![ER図](docs/er_diagram.png)
+
+## 工夫した点
+
+- **ゲストユーザーにサンプルデータを用意**し、ログイン直後から機能を体験できるようにした
+- **ゲストユーザーへの操作制限**：閲覧のみ可能とし、投稿・編集・削除・お気に入り操作を禁止
+- **`request.referer`を活用**：一覧・詳細どちらからお気に入り操作しても元のページに戻れるようにした
+- **バリデーションの設計**：バリデーション内でデータ削除（副作用）を行わない設計を意識した
+- **CSSファイルの分離**：役割ごとにCSSファイルを分離し、保守性を高めた
