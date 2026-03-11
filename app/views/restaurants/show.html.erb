@@ -1,7 +1,43 @@
-<%= render @restaurant %>
+<div class="show-container">
+  <div class="show-hero">
+    <% if @restaurant.image.attached? %>
+      <%= image_tag @restaurant.image, class: "show-hero-image" %>
+    <% else %>
+      <%= image_tag 'salad.png', class: "show-hero-image" %>
+    <% end %>
+    <div class="show-hero-overlay">
+      <% if @restaurant.genre.present? %>
+        <span class="show-genre-badge"><%= @restaurant.genre %></span>
+      <% end %>
+      <h1 class="show-hero-title"><%= @restaurant.name %></h1>
+      <p class="show-hero-date">📅 <%= @restaurant.visited_at %></p>
+    </div>
+  </div>
 
-<div>
-  <%= link_to '編集', edit_restaurant_path(@restaurant) %> |
-  <%= link_to '一覧に戻る', restaurants_path %>
-  <%= button_to '削除', @restaurant, method: :delete, data: { confirm: '本当に削除しますか？' } %>
+  <div class="show-content">
+    <div class="show-rating-row">
+      <span class="show-rating"><%= '★' * @restaurant.rating + '☆' * (5 - @restaurant.rating) %></span>
+      <div class="show-actions-left">
+        <%= link_to '✏️ 編集', edit_restaurant_path(@restaurant), class: "btn-edit" %>
+        <%= button_to '🗑️ 削除', @restaurant, method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn-delete" %>
+      </div>
+    </div>
+
+    <% if @restaurant.comment.present? %>
+      <div class="show-review">
+        <h2 class="show-review-title">コメント</h2>
+        <p class="show-comment"><%= @restaurant.comment %></p>
+      </div>
+    <% end %>
+
+    <% if @restaurant.tags.any? %>
+      <div class="show-tags">
+        <% @restaurant.tags.each do |tag| %>
+          <%= link_to "##{tag.name}", restaurants_path(q: { tags_name_eq: tag.name }), class: "tag-link" %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <%= link_to '← 一覧に戻る', restaurants_path, class: "link-primary" %>
+  </div>
 </div>

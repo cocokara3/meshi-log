@@ -1,39 +1,37 @@
-<div style="background: white; border-radius: 12px; overflow: hidden; border: 1px solid rgba(242,147,13,0.1); box-shadow: 0 1px 4px rgba(0,0,0,0.06); display: flex; flex-direction: column; height: 100%;">
+<div class="card">
   <% if restaurant.image.attached? %>
-    <%= image_tag restaurant.image, style: "width: 100%; height: 200px; object-fit: cover;" %>
+    <%= image_tag restaurant.image, class: "card-image" %>
   <% else %>
-    <%= image_tag 'salad.png', style: "width: 100%; height: 200px; object-fit: cover;" %>
+    <%= image_tag 'salad.png', class: "card-image" %>
   <% end %>
 
-  <div style="padding: 1.25rem; flex: 1; display: flex; flex-direction: column;">
-    <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 0.5rem;">
-      <h3 style="font-size: 1.1rem; font-weight: 700; margin: 0;"><%= restaurant.name %></h3>
-      <span style="color: #f2930d; font-weight: 700; font-size: 0.9rem;"><%= '★' * restaurant.rating + '☆' * (5 - restaurant.rating) %></span>
+  <div class="card-body">
+    <div class="card-header">
+      <h3 class="card-title"><%= restaurant.name %></h3>
+      <span class="card-rating"><%= '★' * restaurant.rating + '☆' * (5 - restaurant.rating) %></span>
     </div>
 
-    <p style="font-size: 0.875rem; color: #64748b; margin: 0 0 0.5rem;">
-      <%= restaurant.genre %> ・ <%= restaurant.visited_at %>
-    </p>
+    <p class="card-meta"><%= restaurant.genre %> ・ <%= restaurant.visited_at %></p>
 
     <% if restaurant.comment.present? %>
-      <p style="font-size: 0.875rem; color: #475569; margin: 0 0 0.75rem;"><%= restaurant.comment %></p>
+      <p class="card-comment"><%= restaurant.comment %></p>
     <% end %>
 
     <% if restaurant.tags.any? %>
-      <div style="display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 0.75rem;">
+      <div class="card-tags">
         <% restaurant.tags.each do |tag| %>
-          <%= link_to tag.name, restaurants_path(q: { tags_name_eq: tag.name }), style: "font-size: 0.75rem; background: rgba(242,147,13,0.1); color: #f2930d; padding: 0.2rem 0.6rem; border-radius: 20px; text-decoration: none;" %>
+          <%= link_to tag.name, restaurants_path(q: { tags_name_eq: tag.name }), class: "tag-link" %>
         <% end %>
       </div>
     <% end %>
 
-    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto;">
-      <%= link_to '詳細を見る', restaurant, style: "font-size: 0.875rem; color: #f2930d; font-weight: 600; text-decoration: none;" %>
+    <div class="card-footer">
+      <%= link_to '詳細を見る', restaurant, class: "link-primary" %>
       <% if user_signed_in? %>
         <% if current_user.favorites.exists?(restaurant: restaurant) %>
-          <%= button_to '❤️', restaurant_favorite_path(restaurant), method: :delete, style: "background: none; border: none; cursor: pointer; font-size: 1.2rem;" %>
+          <%= button_to '❤️', restaurant_favorite_path(restaurant), method: :delete, class: "btn-favorite" %>
         <% else %>
-          <%= button_to '🤍', restaurant_favorite_path(restaurant), method: :post, style: "background: none; border: none; cursor: pointer; font-size: 1.2rem;" %>
+          <%= button_to '🤍', restaurant_favorite_path(restaurant), method: :post, class: "btn-favorite" %>
         <% end %>
       <% end %>
     </div>
