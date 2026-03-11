@@ -38,7 +38,12 @@
     <%= form.label :image, style: "display: block" %>
     <%= form.file_field :image %>
   </div>
+ <div>
+    <%= form.label :tag_names, 'タグ', style: "display: block" %>
+    <%= form.text_field :tag_names, placeholder: 'スペース区切り（例：ランチ おすすめ）' %>
+  </div>
+
   <div>
-    <%= form.submit '保存する'%>
+    <%= form.submit '保存する' %>
   </div>
 <% end %>

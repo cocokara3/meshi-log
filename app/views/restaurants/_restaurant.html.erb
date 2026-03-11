@@ -32,4 +32,11 @@
       <%= button_to '🤍 お気に入り追加', restaurant_favorite_path(restaurant), method: :post %>
     <% end %>
   <% end %>
+  <p>
+   <strong>タグ:</strong>
+   <% restaurant.tags.each do |tag| %>
+     <span><%= tag.name %></span>
+   <% end %>
+ </p>
+
 </div>
