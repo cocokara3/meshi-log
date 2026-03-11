@@ -1,49 +1,68 @@
-<%= form_with(model: restaurant) do |form| %>
- <% if restaurant.errors.any? %>
-   <div style="color: red">
-     <h2><%= restaurant.errors.count %>件のエラーがあります</h2>
-     <ul>
-       <% restaurant.errors.each do |error| %>
-         <li><%= error.full_message %></li>
-       <% end %>
-     </ul>
-   </div>
- <% end %>
+<div class="form-container form-two-col">
+  <%= form_with(model: restaurant) do |form| %>
+    <% if restaurant.errors.any? %>
+      <div class="form-errors">
+        <h2><%= restaurant.errors.count %>件のエラーがあります</h2>
+        <ul>
+          <% restaurant.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
 
-  <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
-  </div>
+    <div class="form-left">
+      <div class="form-group">
+        <%= form.label :name, 'お店の名前', class: "form-label" %>
+        <%= form.text_field :name, class: "form-input", placeholder: '例：銀座 鮨さいとう' %>
+      </div>
 
-  <div>
-    <%= form.label :genre, style: "display: block" %>
-    <%= form.text_field :genre %>
-  </div>
+      <div class="form-row">
+        <div class="form-group">
+          <%= form.label :genre, 'ジャンル', class: "form-label" %>
+          <%= form.text_field :genre, class: "form-input", placeholder: '例：寿司・ラーメン' %>
+        </div>
+        <div class="form-group">
+          <%= form.label :visited_at, '訪問日', class: "form-label" %>
+          <%= form.date_field :visited_at, class: "form-input" %>
+        </div>
+      </div>
 
-  <div>
-    <%= form.label :rating, style: "display: block" %>
-    <%= form.select :rating, (1..5).to_a %>
-  </div>
+      <div class="form-group">
+        <%= form.label :rating, '評価', class: "form-label" %>
+        <%= form.select :rating, (1..5).map { |i| ["#{'★' * i + '☆' * (5-i)}", i] }, {}, class: "form-input" %>
+      </div>
 
-  <div>
-    <%= form.label :comment, style: "display: block" %>
-    <%= form.text_area :comment %>
-  </div>
+      <div class="form-group">
+        <%= form.label :comment, 'コメント', class: "form-label" %>
+        <%= form.text_area :comment, class: "form-input form-textarea", placeholder: '雰囲気、料理の感想、また行きたいかなど...' %>
+      </div>
 
-  <div>
-    <%= form.label :visited_at, style: "display: block" %>
-    <%= form.date_field :visited_at %>
-  </div>
- <div>
-    <%= form.label :image, style: "display: block" %>
-    <%= form.file_field :image %>
-  </div>
- <div>
-    <%= form.label :tag_names, 'タグ', style: "display: block" %>
-    <%= form.text_field :tag_names, placeholder: 'スペース区切り（例：ランチ おすすめ）' %>
-  </div>
+      <div class="form-group">
+        <%= form.label :tag_names, 'タグ', class: "form-label" %>
+        <%= form.text_field :tag_names, class: "form-input", placeholder: 'スペース区切り（例：ランチ おすすめ）' %>
+      </div>
 
-  <div>
-    <%= form.submit '保存する' %>
-  </div>
-<% end %>
+      <div class="form-actions">
+        <%= form.submit '記録する', class: "btn-submit" %>
+      </div>
+    </div>
+
+    <div class="form-right">
+      <div class="form-group">
+        <%= form.label :image, '画像', class: "form-label" %>
+        <div class="form-upload-area">
+          <span style="font-size: 2rem;">📷</span>
+          <p style="margin: 0.5rem 0 0; font-size: 0.875rem; color: #64748b;">食事の写真をアップロード</p>
+          <%= form.file_field :image, class: "form-file" %>
+        </div>
+      </div>
+
+      <% if restaurant.image.attached? %>
+        <div style="margin-top: 1rem;">
+          <%= image_tag restaurant.image, style: "width: 100%; border-radius: 8px; object-fit: cover;" %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>

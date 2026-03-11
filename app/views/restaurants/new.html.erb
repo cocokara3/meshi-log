@@ -1,7 +1,10 @@
-<% content_for :title, "お店を追加" %>
-<h1>お店を追加する</h1>
+<div class="form-page-header">
+  <h1 class="form-page-title">🍽️ 新しい食の記憶</h1>
+  <p class="form-page-subtitle">今日の美味しい体験を記録しよう</p>
+</div>
+
 <%= render "form", restaurant: @restaurant %>
-<br>
-<div>
-  <%= link_to ' 一覧に戻る', restaurants_path %>
+
+<div style="margin-top: 1rem;">
+  <%= link_to '← 一覧に戻る', restaurants_path, class: "link-primary" %>
 </div>
